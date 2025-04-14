@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: edgetunnel  # 指定本地分支为 edgetunnel
+          ref: Cloudflare_vless_trojan  # 指定本地分支为Cloudflare_vless_trojan
 
       - name: Sync from upstream
         uses: TG908/fork-sync@v1.6.3  # 使用高效同步工具
