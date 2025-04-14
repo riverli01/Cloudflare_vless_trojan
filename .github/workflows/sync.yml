@@ -1,0 +1,23 @@
+name: Sync Fork with yonggekkk/Cloudflare_vless_trojan
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天0点触发同步（UTC时间，换算为北京时间为8:00）
+  workflow_dispatch:      # 支持手动触发同步
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: edgetunnel  # 指定本地分支为 edgetunnel
+
+      - name: Sync from upstream
+        uses: TG908/fork-sync@v1.6.3  # 使用高效同步工具
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: yonggekkk                # 原仓库作者
+          head: Cloudflare_vless_trojan            # 原仓库分支
+          base: Cloudflare_vless_trojan            # 本地分支
+          force: false                # 禁用强制覆盖（避免丢失本地修改）
